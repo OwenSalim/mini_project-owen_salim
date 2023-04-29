@@ -5,11 +5,15 @@ import "./index.css";
 import { ConfigProvider } from "antd";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeConfig } from "./themes/ThemeConfig.jsx";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./config/apollo-client.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <ApolloProvider client={client}>
     <ConfigProvider theme={ThemeConfig}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ConfigProvider>
-  </BrowserRouter>
+  </ApolloProvider>
 );

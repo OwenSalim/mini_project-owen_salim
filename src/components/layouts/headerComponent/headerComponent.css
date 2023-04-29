@@ -48,3 +48,7 @@
 .link:active {
   color: #394867;
 }
+
+.logout {
+  margin-top: 15px;
+}
