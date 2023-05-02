@@ -9,16 +9,10 @@ const LayoutComponent = ({ children }) => {
   return (
     <Layout>
       <HeaderComponent />
-      <Content
-        className="site-layout"
-        style={{
-          padding: "0 50px",
-        }}
-      >
+      <Content>
         <div
           style={{
-            padding: 24,
-            minHeight: 800,
+            minHeight: 640,
           }}
         >
           {children}

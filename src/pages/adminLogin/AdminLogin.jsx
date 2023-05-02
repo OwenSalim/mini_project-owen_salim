@@ -90,7 +90,7 @@ const AdminLogin = () => {
 
     if (isAdmin) {
       localStorage.setItem("token", true);
-      navigate("/");
+      navigate("/adminproduct");
     } else {
       Modal.warning({
         title: "Login Failed!",

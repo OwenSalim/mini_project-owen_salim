@@ -22,10 +22,11 @@
 
 .link-wrapper {
   display: flex;
-  margin-top: 10px;
+  align-items: center;
 }
 
 .link {
+  padding-top: 20px;
   width: 100px;
   height: 4rem;
   display: flex;
@@ -47,8 +48,4 @@
 
 .link:active {
   color: #394867;
-}
-
-.logout {
-  margin-top: 15px;
 }
