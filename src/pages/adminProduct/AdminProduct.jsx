@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Form, Typography, Input, Button, Table } from "antd";
+import { Form, Typography, Input, Button, Table, InputNumber } from "antd";
 import "./adminProduct.css";
 import Gap from "../../components/gap/Gap";
 import { TABLE_COLUMNS } from "./constans";
@@ -87,14 +87,10 @@ const AdminProduct = () => {
                   required: true,
                   message: "Please input your product price!",
                 },
-                {
-                  whitespace: true,
-                },
-                { min: 1 },
               ]}
               hasFeedback
             >
-              <Input />
+              <InputNumber min={1} />
             </Form.Item>
 
             <Form.Item

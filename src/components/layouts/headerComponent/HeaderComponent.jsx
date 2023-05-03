@@ -5,6 +5,7 @@ import { AtrixShop } from "../../../assets/index";
 import { Button } from "antd";
 
 const HeaderComponent = () => {
+  const token = localStorage.getItem("token");
   return (
     <>
       <div className="header">
@@ -19,20 +20,24 @@ const HeaderComponent = () => {
             <Link to={"/aboutus"} className="link">
               <p>About Us</p>
             </Link>
-            <Link to={"/adminlogin"} className="link">
+            <Link to={token ? "/adminproduct" : "/adminlogin"} className="link">
               <p>Admin</p>
             </Link>
 
-            <Button
-              className="logout"
-              type="primary"
-              onClick={() => {
-                localStorage.removeItem("token");
-              }}
-              danger
-            >
-              Logout
-            </Button>
+            {token && (
+              <Link to={"/adminlogin"}>
+                <Button
+                  className="logout"
+                  type="primary"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                  }}
+                  danger
+                >
+                  Logout
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
