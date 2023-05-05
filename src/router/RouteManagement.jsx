@@ -15,9 +15,7 @@ const RouteManagement = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/adminlogin");
-    } else {
-      navigate("/adminproduct");
+      navigate("/");
     }
   }, [token]);
 

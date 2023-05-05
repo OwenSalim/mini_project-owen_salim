@@ -8,6 +8,7 @@ import RAM from "./images/ram.svg";
 import PSU from "./images/psu.svg";
 import SSD from "./images/ssd.svg";
 import VGA from "./images/vga.svg";
+import Background1 from "./images/Background1.jpg";
 
 export {
   AtrixShop,
@@ -20,4 +21,5 @@ export {
   PSU,
   SSD,
   VGA,
+  Background1,
 };

@@ -38,84 +38,71 @@ const HomePage = () => {
       <div className="layout-homepage">
         <div className="content-homepage">
           <div className="homepage-icon">
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="Processor" src={Processor} height={120} />}
-              >
-                <Meta title="Processor" />
-              </Card>
-            </Link>
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="Motherboard" src={Motherboard} height={120} />}
-              >
-                <Meta title="Motherboard" />
-              </Card>
-            </Link>
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="RAM" src={RAM} height={120} />}
-              >
-                <Meta title="RAM" />
-              </Card>
-            </Link>
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="PSU" src={PSU} height={120} />}
-              >
-                <Meta title="PSU" />
-              </Card>
-            </Link>
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="VGA" src={VGA} height={120} />}
-              >
-                <Meta title="VGA" />
-              </Card>
-            </Link>
-            <Link to={"/productpage"}>
-              <Card
-                hoverable
-                style={{
-                  width: 150,
-                  textAlign: "center",
-                  backgroundColor: "#f1f6f9",
-                }}
-                cover={<img alt="SSD" src={SSD} height={120} />}
-              >
-                <Meta title="SSD" />
-              </Card>
-            </Link>
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="Processor" src={Processor} height={120} />}
+            >
+              <Meta title="Processor" />
+            </Card>
+
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="Motherboard" src={Motherboard} height={120} />}
+            >
+              <Meta title="Motherboard" />
+            </Card>
+
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="RAM" src={RAM} height={120} />}
+            >
+              <Meta title="RAM" />
+            </Card>
+
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="PSU" src={PSU} height={120} />}
+            >
+              <Meta title="PSU" />
+            </Card>
+
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="VGA" src={VGA} height={120} />}
+            >
+              <Meta title="VGA" />
+            </Card>
+
+            <Card
+              style={{
+                width: 150,
+                textAlign: "center",
+                backgroundColor: "#f1f6f9",
+              }}
+              cover={<img alt="SSD" src={SSD} height={120} />}
+            >
+              <Meta title="SSD" />
+            </Card>
           </div>
         </div>
       </div>
