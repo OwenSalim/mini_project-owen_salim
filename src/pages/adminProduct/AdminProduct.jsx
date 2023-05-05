@@ -1,19 +1,60 @@
 import React, { useEffect } from "react";
-import { Form, Typography, Input, Button, Table, InputNumber } from "antd";
+import {
+  Form,
+  Typography,
+  Input,
+  Button,
+  Table,
+  InputNumber,
+  message,
+  Select,
+} from "antd";
 import "./adminProduct.css";
 import Gap from "../../components/gap/Gap";
 import { TABLE_COLUMNS } from "./constans";
-import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_PRODUCT, GET_PRODUCT } from "./query/product-query";
 
 const AdminProduct = () => {
   const [form] = Form.useForm();
   const { Title } = Typography;
   const { TextArea } = Input;
 
-  const onFinish = (values) => {
-    console.log(values);
+  const onAdd = (values) => {
+    const body = {
+      ...values,
+    };
+    addProduct({
+      variables: {
+        object: {
+          ...body,
+        },
+      },
+      onError: (err) => {
+        message.open({
+          type: "error",
+          content: `${err?.message}`,
+        });
+      },
+    });
+
     form.resetFields();
   };
+
+  //Get Data
+  const {
+    data: productData,
+    loading: isProductLoading,
+    erorr: productError,
+  } = useQuery(GET_PRODUCT);
+
+  //Add Data
+  const [addProduct, { loading: loadingAddProduct }] = useMutation(
+    ADD_PRODUCT,
+    {
+      refetchQueries: [GET_PRODUCT],
+    }
+  );
 
   return (
     <div className="form-layout">
@@ -29,10 +70,10 @@ const AdminProduct = () => {
             layout="horizontal"
             labelAlign="left"
             labelCol={{
-              span: 6,
+              span: 7,
             }}
             wrapperCol={{
-              span: 14,
+              span: 15,
             }}
             initialValues={{
               remember: true,
@@ -41,7 +82,7 @@ const AdminProduct = () => {
               maxWidth: 600,
             }}
             autoComplete="off"
-            onFinish={onFinish}
+            onFinish={onAdd}
           >
             <Form.Item
               label="Product Name"
@@ -69,14 +110,56 @@ const AdminProduct = () => {
                   required: true,
                   message: "Please input your product quantity!",
                 },
-                {
-                  whitespace: true,
-                },
-                { min: 1 },
               ]}
               hasFeedback
             >
-              <Input />
+              <InputNumber
+                min={1}
+                style={{
+                  width: 130,
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Product Category"
+              name="productCategory"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select your product category!",
+                },
+              ]}
+              hasFeedback
+            >
+              <Select
+                options={[
+                  {
+                    value: "Processor",
+                    label: "Processor",
+                  },
+                  {
+                    value: "Motherboard",
+                    label: "Motherboard",
+                  },
+                  {
+                    value: "RAM",
+                    label: "RAM",
+                  },
+                  {
+                    value: "PSU",
+                    label: "PSU",
+                  },
+                  {
+                    value: "VGA",
+                    label: "VGA",
+                  },
+                  {
+                    value: "SSD",
+                    label: "SSD",
+                  },
+                ]}
+              />
             </Form.Item>
 
             <Form.Item
@@ -90,18 +173,23 @@ const AdminProduct = () => {
               ]}
               hasFeedback
             >
-              <InputNumber min={1} />
+              <InputNumber
+                min={1}
+                style={{
+                  width: 130,
+                }}
+              />
             </Form.Item>
 
             <Form.Item
               label="Product Image"
-              name="ProductImage"
-              //   rules={[
-              //     {
-              //       required: true,
-              //       message: "Please input your product image!",
-              //     },
-              //   ]}
+              name="productImage"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your product image!",
+                },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -117,7 +205,7 @@ const AdminProduct = () => {
                 {
                   whitespace: true,
                 },
-                { min: 20 },
+                { min: 10 },
               ]}
               hasFeedback
             >
@@ -132,7 +220,12 @@ const AdminProduct = () => {
         </div>
       </div>
       <Gap height={50} />
-      <Table columns={TABLE_COLUMNS} />
+      <Table
+        rowKey="uuid"
+        columns={TABLE_COLUMNS}
+        loading={isProductLoading}
+        dataSource={productData?.product}
+      />
     </div>
   );
 };
