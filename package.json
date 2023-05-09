@@ -13,6 +13,8 @@
     "@apollo/client": "^3.7.13",
     "@apollo/server": "^4.7.0",
     "antd": "^5.4.4",
+    "axios": "^1.4.0",
+    "currency.js": "^2.0.4",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

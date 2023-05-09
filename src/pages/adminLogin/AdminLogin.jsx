@@ -124,6 +124,7 @@ const AdminLogin = () => {
           name="login-form"
           form={form}
           onFinish={section === "Login" ? onLogin : onRegister}
+          autoComplete="off"
         >
           <Form.Item
             name="username"

@@ -23,3 +23,22 @@ export const ADD_PRODUCT = gql`
     }
   }
 `;
+
+export const UPDATE_PRODUCT = gql`
+  mutation product(
+    $pk_columns: product_pk_columns_input!
+    $_set: product_set_input!
+  ) {
+    update_product_by_pk(pk_columns: $pk_columns, _set: $_set) {
+      uuid
+    }
+  }
+`;
+
+export const DELETE_PRODUCT = gql`
+  mutation product($uuid: uuid!) {
+    delete_product_by_pk(uuid: $uuid) {
+      uuid
+    }
+  }
+`;

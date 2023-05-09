@@ -15,6 +15,8 @@ const LayoutComponent = ({ children }) => {
           style={{
             minHeight: 850,
             backgroundImage: `url(${Background1})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
           }}
         >
           {children}
