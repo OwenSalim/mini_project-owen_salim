@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Form,
   Typography,
@@ -8,38 +8,30 @@ import {
   InputNumber,
   message,
   Select,
+  Popconfirm,
+  Space,
+  Upload,
 } from "antd";
+import { Image } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import "./adminProduct.css";
 import Gap from "../../components/gap/Gap";
-import { TABLE_COLUMNS } from "./constans";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_PRODUCT, GET_PRODUCT } from "./query/product-query";
+import {
+  ADD_PRODUCT,
+  DELETE_PRODUCT,
+  GET_PRODUCT,
+  UPDATE_PRODUCT,
+} from "./query/product-query";
+import { INITIAL_TABLE_DATA } from "./constans";
+import { useSingleUploader } from "../../hooks/useSingleUploader";
+import LoadingComponent from "../../components/loadingComponent/LoadingComponent";
+import { uploaderConfig } from "../../config/uploader-config";
 
 const AdminProduct = () => {
   const [form] = Form.useForm();
   const { Title } = Typography;
   const { TextArea } = Input;
-
-  const onAdd = (values) => {
-    const body = {
-      ...values,
-    };
-    addProduct({
-      variables: {
-        object: {
-          ...body,
-        },
-      },
-      onError: (err) => {
-        message.open({
-          type: "error",
-          content: `${err?.message}`,
-        });
-      },
-    });
-
-    form.resetFields();
-  };
 
   //Get Data
   const {
@@ -55,6 +47,202 @@ const AdminProduct = () => {
       refetchQueries: [GET_PRODUCT],
     }
   );
+
+  // Delete Data
+  const [deleteProduct, { loading: loadingDelete }] = useMutation(
+    DELETE_PRODUCT,
+    {
+      refetchQueries: [GET_PRODUCT],
+    }
+  );
+
+  // Update Data
+  const [updateProduct, { loading: loadingUpdateProduct }] = useMutation(
+    UPDATE_PRODUCT,
+    {
+      refetchQueries: [GET_PRODUCT],
+    }
+  );
+
+  const [rowData, setRowData] = useState();
+  const [isEdit, setIsEdit] = useState(false);
+
+  //Add Data to table
+  const onAdd = (values) => {
+    const body = {
+      productImage: productImage,
+      ...values,
+    };
+    addProduct({
+      variables: {
+        object: {
+          ...body,
+        },
+      },
+      onError: (err) => {
+        message.open({
+          type: "error",
+          content: `${err?.message}`,
+        });
+      },
+      onCompleted: () => handleCancel(),
+    });
+  };
+
+  //Delete Data from table
+  const onDelete = (row_id) => {
+    deleteProduct({
+      variables: { uuid: row_id },
+      onError: (err) => {
+        message.open({
+          type: "error",
+          content: `${err?.message}`,
+        });
+      },
+    });
+  };
+
+  //Edit Data from table
+  const onEdit = (values) => {
+    const uuid = rowData.uuid;
+    const body = {
+      productImage: productImage,
+      ...values,
+    };
+
+    updateProduct({
+      variables: { pk_columns: { uuid: uuid }, _set: { ...body } },
+      onCompleted: () => {
+        handleCancel();
+      },
+      onError: (err) => {
+        message.open({
+          type: "error",
+          content: `${err?.message}`,
+        });
+      },
+    });
+  };
+
+  //   to handle edit button
+  const handleEdit = (row_data) => {
+    setRowData(row_data);
+    setIsEdit(true);
+    setProductImage(row_data.productImage);
+    form.setFieldsValue({
+      productName: row_data.productName,
+      productQuantity: row_data.productQuantity,
+      productCategory: row_data.productCategory,
+      productPrice: row_data.productPrice,
+      productDescription: row_data.productDescription,
+    });
+  };
+
+  //   to handle cancel button
+  const handleCancel = () => {
+    setRowData();
+    setProductImage("");
+    setIsEdit(false);
+    form.resetFields();
+  };
+
+  // Upload Image
+  const [isLoadingUpload, uploadFile] = useSingleUploader();
+  const [productImage, setProductImage] = useState("");
+
+  const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  // to handle Upload Image
+  const handleUpload = async (file) => {
+    const body = {
+      file: await getBase64(file.file.originFileObj),
+      upload_preset: uploaderConfig.upload_preset,
+      public_id: file.file.name.replace(/\.[^.]*$/, ""),
+      api_key: uploaderConfig.api_key,
+    };
+    uploadFile(body, (data) => {
+      setProductImage(data.url);
+    });
+  };
+
+  //Preview Image
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+  };
+
+  useEffect(() => {
+    if (productError) {
+      message.open({
+        type: "error",
+        content: `${productError?.message}`,
+      });
+    }
+  }, [productError]);
+
+  const TABLE_COLUMNS = [
+    {
+      title: "Product Image",
+      dataIndex: "productImage",
+      key: "productImage",
+      render: (_, record, index) => (
+        <Image
+          src={record.productImage}
+          alt={`productImage-${index}`}
+          style={{ height: "100px" }}
+        />
+      ),
+    },
+    {
+      title: "Product Name",
+      dataIndex: "productName",
+      key: "productName",
+    },
+    {
+      title: "Product Quantity",
+      dataIndex: "productQuantity",
+      key: "productQuantity",
+    },
+    {
+      title: "Product Category",
+      dataIndex: "productCategory",
+      key: "productCategory",
+    },
+    {
+      title: "Product Price",
+      dataIndex: "productPrice",
+      key: "productPrice",
+    },
+    {
+      title: "Product Description",
+      dataIndex: "productDescription",
+      key: "productDescription",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      render: (_, record) =>
+        INITIAL_TABLE_DATA.length >= 1 ? (
+          <Space>
+            <a onClick={() => handleEdit(record)}>Edit</a>
+            <Popconfirm
+              title="Sure to delete?"
+              arrow={false}
+              onConfirm={() => onDelete(record.uuid)}
+            >
+              <a>Delete</a>
+            </Popconfirm>
+          </Space>
+        ) : null,
+    },
+  ];
 
   return (
     <div className="form-layout">
@@ -82,7 +270,7 @@ const AdminProduct = () => {
               maxWidth: 600,
             }}
             autoComplete="off"
-            onFinish={onAdd}
+            onFinish={isEdit ? onEdit : onAdd}
           >
             <Form.Item
               label="Product Name"
@@ -181,17 +369,45 @@ const AdminProduct = () => {
               />
             </Form.Item>
 
-            <Form.Item
-              label="Product Image"
-              name="productImage"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your product image!",
-                },
-              ]}
-            >
-              <Input />
+            <Form.Item label="Product Image">
+              <Upload
+                showUploadList={false}
+                name="file"
+                maxCount={1}
+                onRemove={() => {
+                  setProductImage("");
+                }}
+                customRequest={() => {}}
+                onChange={handleUpload}
+                onPreview={handlePreview}
+              >
+                <Button
+                  icon={<UploadOutlined />}
+                  type={!productImage ? "dashed" : "default"}
+                >
+                  {productImage
+                    ? "Change Product Image"
+                    : "Upload Product Image"}
+                </Button>
+              </Upload>
+
+              {isLoadingUpload ? (
+                <LoadingComponent />
+              ) : (
+                productImage && (
+                  <div>
+                    <Gap height={20} />
+                    <Image
+                      src={productImage}
+                      alt="productImage"
+                      style={{
+                        height: "200px",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </div>
+                )
+              )}
             </Form.Item>
 
             <Form.Item
@@ -209,12 +425,31 @@ const AdminProduct = () => {
               ]}
               hasFeedback
             >
-              <TextArea showCount maxLength={100} rows={4} />
+              <TextArea showCount maxLength={500} rows={8} />
             </Form.Item>
 
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
+            {isEdit ? (
+              <Space>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={loadingUpdateProduct}
+                >
+                  Save
+                </Button>
+                <Button type="primary" onClick={handleCancel} danger>
+                  Cancel
+                </Button>
+              </Space>
+            ) : (
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loadingAddProduct}
+              >
+                Submit
+              </Button>
+            )}
           </Form>
           {/* FORM END */}
         </div>
@@ -223,7 +458,7 @@ const AdminProduct = () => {
       <Table
         rowKey="uuid"
         columns={TABLE_COLUMNS}
-        loading={isProductLoading}
+        loading={isProductLoading || loadingDelete}
         dataSource={productData?.product}
       />
     </div>
