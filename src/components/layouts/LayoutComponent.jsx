@@ -13,10 +13,11 @@ const LayoutComponent = ({ children }) => {
       <Content>
         <div
           style={{
-            minHeight: 850,
+            minHeight: "55rem",
             backgroundImage: `url(${Background1})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           {children}

@@ -1,0 +1,42 @@
+@font-face {
+  font-family: HeeboMed;
+  src: url(../../assets/font/heebo-medium.ttf);
+}
+
+.productPage-layout {
+  padding: 5rem;
+  width: 100%;
+}
+
+.productPage-card {
+  background-color: #f1f6f9;
+  font-family: HeeboMed;
+  height: 27rem;
+  display: block;
+  box-shadow: 0px 0px 10px -3px #1d267d;
+}
+
+.productPage-productName {
+  height: 3.5rem;
+  font-size: 1.1rem;
+  box-shadow: 0px 2px 0px 0px #3c486b;
+}
+
+.productPage-item {
+  display: flex;
+  justify-content: center;
+}
+
+.productDesc {
+  text-align: justify;
+  height: 110px;
+}
+
+.productPrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productPage-image {
+  width: 80%;
+}

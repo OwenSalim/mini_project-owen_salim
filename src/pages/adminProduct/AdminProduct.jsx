@@ -425,7 +425,7 @@ const AdminProduct = () => {
               ]}
               hasFeedback
             >
-              <TextArea showCount maxLength={500} rows={8} />
+              <TextArea showCount rows={8} />
             </Form.Item>
 
             {isEdit ? (
@@ -460,6 +460,12 @@ const AdminProduct = () => {
         columns={TABLE_COLUMNS}
         loading={isProductLoading || loadingDelete}
         dataSource={productData?.product}
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 5,
+        }}
       />
     </div>
   );
