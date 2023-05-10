@@ -13,7 +13,7 @@ const LayoutComponent = ({ children }) => {
       <Content>
         <div
           style={{
-            minHeight: "55rem",
+            minHeight: "750px",
             backgroundImage: `url(${Background1})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",

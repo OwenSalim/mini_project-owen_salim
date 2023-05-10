@@ -9,6 +9,7 @@ import { RUPIAH } from "../../components/currency";
 import { Link } from "react-router-dom";
 import Gap from "../../components/gap/Gap";
 import { SearchOutlined } from "@ant-design/icons";
+import { Rate } from "antd";
 
 const ProductPage = () => {
   const { Title } = Typography;
@@ -81,14 +82,15 @@ const ProductPage = () => {
                   />
                 </div>
 
-                <Gap height={30} />
+                <Gap height={10} />
                 <div className="productPrice">
                   <div>
+                    <Rate allowHalf defaultValue={4.5} />
                     <p>Stock : {item.productQuantity}</p>
                     <p>Harga : {RUPIAH(item.productPrice)}</p>
                   </div>
 
-                  <Link to={`/productpage/${item.uuid}`}>
+                  <Link className="buy-button" to={`/productpage/${item.uuid}`}>
                     <Button>
                       <strong>Buy Now</strong>
                     </Button>

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { GET_PRODUCT_BY_PK } from "../../adminProduct/query/product-query";
 import LoadingComponent from "../../../components/loadingComponent/LoadingComponent";
 import "./productDetail.css";
-import { Button, Image } from "antd";
+import { Image, Rate } from "antd";
 import Gap from "../../../components/gap/Gap";
 import { RUPIAH } from "../../../components/currency";
 import { WhatAppsIcon } from "../../../assets";
@@ -42,11 +42,13 @@ const ProductDetail = () => {
               <p>{productData?.product_by_pk?.productDescription}</p>
             </div>
 
-            <Gap height={25} />
+            <Gap height={10} />
             <div className="productDetail-price">
               <div className="productDetail-price2">
+                <Rate allowHalf defaultValue={4.5} />
+                <Gap height={7} />
                 <p>Stock : {productData?.product_by_pk?.productQuantity}</p>
-                <Gap height={15} />
+                <Gap height={7} />
                 <p>
                   Harga : {RUPIAH(productData?.product_by_pk?.productPrice)}
                 </p>
