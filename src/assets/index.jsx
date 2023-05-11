@@ -22,6 +22,8 @@ import Anteraja from "./images/anteraja.svg";
 import Grab from "./images/grab.svg";
 import Gojek from "./images/gojek.svg";
 import JNE from "./images/jne.svg";
+import AtrixShopAbout from "./images/AtrixShopAboutUs.svg";
+import AtrixShopMaps from "./images/AtrixShopMaps.png";
 
 export {
   AtrixShop,
@@ -48,4 +50,6 @@ export {
   Grab,
   Gojek,
   JNE,
+  AtrixShopAbout,
+  AtrixShopMaps,
 };
