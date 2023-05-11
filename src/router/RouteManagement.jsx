@@ -8,6 +8,7 @@ import AboutUs from "../pages/aboutUs/AboutUs";
 import AdminLogin from "../pages/adminLogin/AdminLogin";
 import LoadingComponent from "../components/loadingComponent/LoadingComponent";
 import AdminProduct from "../pages/adminProduct/AdminProduct";
+import ProductDetail from "../pages/productPage/productDetail/ProductDetail";
 
 const RouteManagement = () => {
   const token = localStorage.getItem("token");
@@ -15,9 +16,7 @@ const RouteManagement = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/adminlogin");
-    } else {
-      navigate("/adminproduct");
+      navigate("/");
     }
   }, [token]);
 
@@ -28,6 +27,7 @@ const RouteManagement = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/productpage" element={<ProductPage />} />
+            <Route path="/productpage/:uuid" element={<ProductDetail />} />
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/adminproduct" element={<AdminProduct />} />

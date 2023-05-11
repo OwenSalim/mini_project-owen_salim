@@ -104,7 +104,7 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="container-center">
+    <div className="adminLogin-container">
       <Card title="Admin Login" bodyStyle={{ width: "500px" }}>
         <Row justify="center">
           <Radio.Group
@@ -124,6 +124,7 @@ const AdminLogin = () => {
           name="login-form"
           form={form}
           onFinish={section === "Login" ? onLogin : onRegister}
+          autoComplete="off"
         >
           <Form.Item
             name="username"

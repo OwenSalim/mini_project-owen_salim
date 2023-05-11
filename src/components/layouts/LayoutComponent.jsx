@@ -2,6 +2,7 @@ import React from "react";
 import { Layout } from "antd";
 import HeaderComponent from "./headerComponent/HeaderComponent";
 import FooterComponent from "./footerComponent/FooterComponent";
+import { Background1 } from "../../assets";
 
 const LayoutComponent = ({ children }) => {
   const { Content } = Layout;
@@ -12,7 +13,11 @@ const LayoutComponent = ({ children }) => {
       <Content>
         <div
           style={{
-            minHeight: 640,
+            minHeight: "750px",
+            backgroundImage: `url(${Background1})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           {children}

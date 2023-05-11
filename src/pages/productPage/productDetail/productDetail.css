@@ -1,0 +1,68 @@
+@font-face {
+  font-family: Montserrat;
+  src: url(../../../assets//font/Montserrat-VariableFont_wght.ttf);
+}
+
+.productDetail-layout {
+  padding: 5rem;
+}
+
+.productDetail-content {
+  display: flex;
+  gap: 2rem;
+  background-color: #f1f6f9;
+  border-radius: 15px;
+  padding: 5rem;
+  box-shadow: 0px 0px 10px -3px #1d267d;
+  font-family: Montserrat;
+}
+
+.productDetail-desc {
+  width: 50%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border-style: groove;
+}
+
+.productDetail-productName {
+  height: 15%;
+  font-size: 1.4rem;
+  box-shadow: 0px 2px 0px 0px #3c486b;
+}
+
+.productDetail-about {
+  height: 65%;
+  text-align: justify;
+  font-size: 15px;
+  box-shadow: 0px 2px 0px 0px #3c486b;
+  font-weight: 450;
+  line-height: 25px;
+}
+
+.productDetail-price {
+  display: flex;
+  justify-content: space-between;
+  height: 17%;
+}
+
+.productDetail-price2 {
+  font-size: 16px;
+  font-weight: 450;
+}
+
+.productDetail-price3 {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  gap: 20px;
+}
+
+.productDetail-price3 > p {
+  padding-top: 10px;
+}
+
+.productDetail-price3 > a > img {
+  height: 50px;
+  width: 50px;
+  border-radius: 15px;
+}

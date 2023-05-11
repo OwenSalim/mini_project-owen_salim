@@ -13,10 +13,15 @@
     "@apollo/client": "^3.7.13",
     "@apollo/server": "^4.7.0",
     "antd": "^5.4.4",
+    "axios": "^1.4.0",
+    "currency.js": "^2.0.4",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.10.0"
+    "react-fast-marquee": "^1.5.2",
+    "react-router-dom": "^6.10.0",
+    "react-text-loop": "^2.3.0",
+    "sweetalert2": "^11.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

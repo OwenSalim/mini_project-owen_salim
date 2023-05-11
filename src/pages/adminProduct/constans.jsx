@@ -1,27 +1,10 @@
-export const TABLE_COLUMNS = [
+export const INITIAL_TABLE_DATA = [
   {
-    title: "Product Name",
-    dataIndex: "productName",
-    key: "productName",
-  },
-  {
-    title: "Product Quantity",
-    dataIndex: "productQuantity",
-    key: "productQuantity",
-  },
-  {
-    title: "Product Price",
-    dataIndex: "productPrice",
-    key: "productPrice",
-  },
-  {
-    title: "Product Image",
-    dataIndex: "productImage",
-    key: "productImage",
-  },
-  {
-    title: "Product Description",
-    dataIndex: "productDescription",
-    key: "productDescription",
+    key: 1,
+    productName: "RTX 2080",
+    productQuantity: "5",
+    productPrice: 8000000,
+    productImage: "test",
+    productDescription: "Sangat Cepat dan Mantap",
   },
 ];
