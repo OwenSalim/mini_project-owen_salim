@@ -8,6 +8,7 @@ import Marquee from "react-fast-marquee";
 import { Avatar, List } from "antd";
 const { Meta } = Card;
 import { Rate } from "antd";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -48,96 +49,96 @@ const HomePage = () => {
         </Carousel>
       </div>
 
-      <Alert
-        banner
-        message={
-          <Marquee pauseOnHover gradient={false}>
-            Atrix Shop buka setiap hari pada pukul 07:00 WIB s.d. 17:00 WIB dari
-            hari Senin s.d. Jumat, kami hanya menjual produk original !!!.
-            Hindari penipuan yang mengatasnamakan Atrix Shop. Terima Kasih.
-          </Marquee>
-        }
-      />
       <Gap height={40} />
       <div className="homePage-itemIcon">
         <div className="homePage-itemlayout">
           <p>Toko Kami Menjual</p>
           <Gap height={40} />
-          <div className="homepage-icon">
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={
-                <img
-                  alt="Processor"
-                  src={Processor}
-                  height={120}
-                  className="card"
-                />
-              }
-            >
-              <Meta title="Processor" />
-            </Card>
+          <Link to={`/productpage/`}>
+            <div className="homepage-icon">
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img
+                    alt="Processor"
+                    src={Processor}
+                    height={120}
+                    className="card"
+                  />
+                }
+              >
+                <Meta title="Processor" className="cardName" />
+              </Card>
 
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={
-                <img
-                  alt="Motherboard"
-                  src={Motherboard}
-                  height={120}
-                  className="card"
-                />
-              }
-            >
-              <Meta title="Motherboard" />
-            </Card>
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img
+                    alt="Motherboard"
+                    src={Motherboard}
+                    height={120}
+                    className="card"
+                  />
+                }
+              >
+                <Meta title="Motherboard" />
+              </Card>
 
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={<img alt="RAM" src={RAM} height={120} className="card" />}
-            >
-              <Meta title="RAM" />
-            </Card>
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img alt="RAM" src={RAM} height={120} className="card" />
+                }
+              >
+                <Meta title="RAM" />
+              </Card>
 
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={<img alt="PSU" src={PSU} height={120} className="card" />}
-            >
-              <Meta title="PSU" />
-            </Card>
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img alt="PSU" src={PSU} height={120} className="card" />
+                }
+              >
+                <Meta title="PSU" />
+              </Card>
 
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={<img alt="VGA" src={VGA} height={120} className="card" />}
-            >
-              <Meta title="VGA" />
-            </Card>
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img alt="VGA" src={VGA} height={120} className="card" />
+                }
+              >
+                <Meta title="VGA" />
+              </Card>
 
-            <Card
-              className="card"
-              style={{
-                width: 150,
-              }}
-              cover={<img alt="SSD" src={SSD} height={120} className="card" />}
-            >
-              <Meta title="SSD" />
-            </Card>
-          </div>
+              <Card
+                className="card"
+                style={{
+                  width: 150,
+                }}
+                cover={
+                  <img alt="SSD" src={SSD} height={120} className="card" />
+                }
+              >
+                <Meta title="SSD" />
+              </Card>
+            </div>
+          </Link>
         </div>
       </div>
       <Gap height={40} />
@@ -165,6 +166,17 @@ const HomePage = () => {
         </div>
       </div>
       <Gap height={40} />
+      <Alert
+        banner
+        message={
+          <Marquee pauseOnHover gradient={false}>
+            Atrix Shop buka setiap hari pada pukul 07:00 WIB s.d. 17:00 WIB dari
+            hari Senin s.d. Jumat, kami hanya menjual produk original !!.
+            Hindari penipuan yang mengatasnamakan Atrix Shop. Terima Kasih.
+            Selamat berbelanja !!
+          </Marquee>
+        }
+      />
     </>
   );
 };

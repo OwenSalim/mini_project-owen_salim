@@ -54,8 +54,13 @@ const FooterComponent = () => {
 
         <div class="newsletter-box">
           <h3>Metode Pengiriman</h3>
-          <img src={Anteraja} height="35px" alt="Anter Aja" />
-          <img src={JNE} height="35px" alt="JNE" />
+
+          <a href="https://anteraja.id/" target="_blank">
+            <img src={Anteraja} height="35px" alt="Anter Aja" />
+          </a>
+          <a href="https://www.jne.co.id/id/beranda" target="_blank">
+            <img src={JNE} height="35px" alt="JNE" />
+          </a>
         </div>
 
         <div class="partner-box">

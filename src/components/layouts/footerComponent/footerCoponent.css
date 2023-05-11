@@ -5,7 +5,6 @@
 
 .footer-layout {
   border-top: solid #1677ff 0.35rem;
-
   box-shadow: 0px 0px 5px -2px black;
   font-family: heebo-medium;
 }
@@ -15,6 +14,7 @@
   justify-content: center;
   padding: 10px 30px;
   background-color: #f1f6f9;
+  color: #1677ff;
 }
 
 .atrix-box {
@@ -39,7 +39,7 @@
   padding-bottom: 10px;
 }
 
-.newsletter-box > img {
+.newsletter-box > a > img {
   margin-right: 15px;
 }
 
@@ -54,5 +54,7 @@
 }
 
 .copyright-box {
+  padding-top: 5px;
   text-align: center;
+  color: #1677ff;
 }
