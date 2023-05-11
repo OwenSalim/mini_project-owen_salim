@@ -1,3 +1,36 @@
 .aboutUs-layout {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 50px 10px;
+}
+
+.aboutUs-content {
+  padding: 30px;
+  width: 80%;
+  box-shadow: 0px 0px 10px -3px #1d267d;
+  background-color: #f1f6f9;
+  font-family: HeeboMed;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.aboutUs-content > h1 {
+  font-size: 30px;
+}
+
+.aboutUs-content > p {
+  font-size: 20px;
+  padding: 0px 40px;
+}
+
+.aboutUs-content > Image {
+  margin: auto auto;
+  box-shadow: 0px 0px 10px -3px #1d267d;
+}
+
+.wa-atrixshop {
+  height: 50px;
+  width: 50px;
+  border-radius: 15px;
 }
