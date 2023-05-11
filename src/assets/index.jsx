@@ -24,6 +24,7 @@ import Gojek from "./images/gojek.svg";
 import JNE from "./images/jne.svg";
 import AtrixShopAbout from "./images/AtrixShopAboutUs.svg";
 import AtrixShopMaps from "./images/AtrixShopMaps.png";
+import Star from "./images/Star.png";
 
 export {
   AtrixShop,
@@ -52,4 +53,5 @@ export {
   JNE,
   AtrixShopAbout,
   AtrixShopMaps,
+  Star,
 };
