@@ -34,3 +34,26 @@
   display: grid;
   width: 600px;
 }
+
+.edit-button {
+  color: white;
+  background-color: green;
+  height: 30px;
+  width: 60px;
+  border-radius: 15px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.delete-button {
+  background-color: red;
+  height: 30px;
+  width: 60px;
+  border-radius: 15px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.delete-button > a {
+  color: white;
+}

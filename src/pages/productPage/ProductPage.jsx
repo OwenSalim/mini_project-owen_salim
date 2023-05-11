@@ -37,15 +37,37 @@ const ProductPage = () => {
       })
     );
   };
+
+  const handleSearch2 = (e) => {
+    const value = e.target.value;
+
+    setData(
+      productData?.product.filter((item) => {
+        const isMatchProduct = value
+          ? item.productCategory.toLowerCase().includes(value.toLowerCase())
+          : true;
+
+        return isMatchProduct;
+      })
+    );
+  };
   return (
     <div className="productPage-layout">
       <div>
         <Title>Product List</Title>
-        <Input
-          placeholder="Search Product Here"
-          prefix={<SearchOutlined />}
-          onChange={handleSearch}
-        />
+        <div className="searchBar">
+          <Input
+            placeholder="Search By Name"
+            prefix={<SearchOutlined />}
+            onChange={handleSearch}
+          />
+          <Gap height={20} />
+          <Input
+            placeholder="Search By Category"
+            prefix={<SearchOutlined />}
+            onChange={handleSearch2}
+          />
+        </div>
 
         <Gap height={25} />
         {isProductLoading && <LoadingComponent />}

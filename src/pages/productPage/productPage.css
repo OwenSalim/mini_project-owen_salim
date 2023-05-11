@@ -3,6 +3,10 @@
   src: url(../../assets/font/heebo-medium.ttf);
 }
 
+.searchBar {
+  width: 450px;
+}
+
 .productPage-layout {
   padding: 5rem;
   width: 100%;

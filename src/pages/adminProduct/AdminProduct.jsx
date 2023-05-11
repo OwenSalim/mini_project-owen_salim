@@ -27,6 +27,7 @@ import { INITIAL_TABLE_DATA } from "./constans";
 import { useSingleUploader } from "../../hooks/useSingleUploader";
 import LoadingComponent from "../../components/loadingComponent/LoadingComponent";
 import { uploaderConfig } from "../../config/uploader-config";
+import Swal from "sweetalert2";
 
 const AdminProduct = () => {
   const [form] = Form.useForm();
@@ -79,13 +80,19 @@ const AdminProduct = () => {
           ...body,
         },
       },
+      onCompleted: () => {
+        Swal.fire({
+          icon: "success",
+          title: `Add Data is Success!!`,
+        });
+        handleCancel();
+      },
       onError: (err) => {
-        message.open({
-          type: "error",
-          content: `${err?.message}`,
+        Swal.fire({
+          icon: "error",
+          title: `${err?.Swal}`,
         });
       },
-      onCompleted: () => handleCancel(),
     });
   };
 
@@ -94,9 +101,9 @@ const AdminProduct = () => {
     deleteProduct({
       variables: { uuid: row_id },
       onError: (err) => {
-        message.open({
-          type: "error",
-          content: `${err?.message}`,
+        Swal.fire({
+          icon: "error",
+          title: `${err?.Swal}`,
         });
       },
     });
@@ -113,12 +120,16 @@ const AdminProduct = () => {
     updateProduct({
       variables: { pk_columns: { uuid: uuid }, _set: { ...body } },
       onCompleted: () => {
+        Swal.fire({
+          icon: "success",
+          title: `Update Data is Success!!`,
+        });
         handleCancel();
       },
       onError: (err) => {
-        message.open({
-          type: "error",
-          content: `${err?.message}`,
+        Swal.fire({
+          icon: "error",
+          title: `${err?.Swal}`,
         });
       },
     });
@@ -231,13 +242,17 @@ const AdminProduct = () => {
       render: (_, record) =>
         INITIAL_TABLE_DATA.length >= 1 ? (
           <Space>
-            <a onClick={() => handleEdit(record)}>Edit</a>
+            <a onClick={() => handleEdit(record)}>
+              <div className="edit-button">Edit</div>
+            </a>
             <Popconfirm
               title="Sure to delete?"
               arrow={false}
               onConfirm={() => onDelete(record.uuid)}
             >
-              <a>Delete</a>
+              <div className="delete-button">
+                <a>Delete</a>
+              </div>
             </Popconfirm>
           </Space>
         ) : null,
