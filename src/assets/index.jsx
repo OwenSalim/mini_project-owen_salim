@@ -1,5 +1,5 @@
 import AtrixShop from "./images/AtrixShop.png";
-import Banner1 from "./images/banner1.jpg";
+import Banner1 from "./images/Banner1.jpg";
 import Banner2 from "./images/Banner2.jpg";
 import Banner3 from "./images/Banner3.jpg";
 import Processor from "./images/processor.svg";
