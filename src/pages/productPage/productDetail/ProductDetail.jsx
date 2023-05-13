@@ -45,18 +45,27 @@ const ProductDetail = () => {
             <Gap height={10} />
             <div className="productDetail-price">
               <div className="productDetail-price2">
-                <Rate allowHalf defaultValue={4.5} />
-                <Gap height={7} />
-                <p>Stock : {productData?.product_by_pk?.productQuantity}</p>
-                <Gap height={7} />
-                <p>
-                  Harga : {RUPIAH(productData?.product_by_pk?.productPrice)}
-                </p>
+                {productData && (
+                  <>
+                    <Rate
+                      allowHalf
+                      disabled
+                      value={productData?.product_by_pk?.productStar}
+                    />
+
+                    <Gap height={7} />
+                    <p>Stock : {productData?.product_by_pk?.productQuantity}</p>
+                    <Gap height={7} />
+                    <p>
+                      Harga : {RUPIAH(productData?.product_by_pk?.productPrice)}
+                    </p>
+                  </>
+                )}
               </div>
 
               <div className="productDetail-price3">
-                <p>Pesan Sekarang :</p>
-                <a href="https://wa.link/0oh9ok" target="_b">
+                <a href="https://wa.link/0oh9ok" target="_blank">
+                  <p>Pesan Sekarang</p>
                   <img src={WhatAppsIcon} alt="WhatApps Icon" />
                 </a>
               </div>

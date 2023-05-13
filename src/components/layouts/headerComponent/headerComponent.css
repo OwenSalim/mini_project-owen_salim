@@ -47,3 +47,8 @@
 .link:active {
   color: #394867;
 }
+
+.selectedHeader {
+  background-color: #9ba4b5;
+  color: #f0f0f0;
+}

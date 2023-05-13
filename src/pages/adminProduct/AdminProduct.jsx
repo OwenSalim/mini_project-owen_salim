@@ -237,6 +237,11 @@ const AdminProduct = () => {
       key: "productDescription",
     },
     {
+      title: "Product Rating",
+      dataIndex: "productStar",
+      key: "productStar",
+    },
+    {
       title: "Action",
       dataIndex: "action",
       render: (_, record) =>
@@ -441,6 +446,26 @@ const AdminProduct = () => {
               hasFeedback
             >
               <TextArea showCount rows={8} />
+            </Form.Item>
+
+            <Form.Item
+              label="Product Rating"
+              name="productStar"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your product rating!",
+                },
+              ]}
+              hasFeedback
+            >
+              <InputNumber
+                min={1}
+                max={5}
+                style={{
+                  width: 130,
+                }}
+              />
             </Form.Item>
 
             {isEdit ? (

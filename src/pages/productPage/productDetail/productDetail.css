@@ -51,18 +51,23 @@
 }
 
 .productDetail-price3 {
-  font-size: 16px;
-  font-weight: 500;
-  display: flex;
-  gap: 20px;
+  background-color: green;
+  height: 50px;
+  border-radius: 10px;
 }
 
-.productDetail-price3 > p {
-  padding-top: 10px;
+.productDetail-price3 > a {
+  display: flex;
+  gap: 10px;
+}
+
+.productDetail-price3 > a > p {
+  color: white;
+  padding: 15px 10px 10px 10px;
 }
 
 .productDetail-price3 > a > img {
   height: 50px;
   width: 50px;
-  border-radius: 15px;
+  border-radius: 10px;
 }
