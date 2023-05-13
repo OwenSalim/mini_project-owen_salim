@@ -97,3 +97,9 @@
   padding: 1rem 4rem;
   border-radius: 10px;
 }
+
+.alert {
+  font-weight: 500;
+  color: #1677ff;
+  background-color: #f1f6f9;
+}

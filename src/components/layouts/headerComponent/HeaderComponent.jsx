@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./headerComponent.css";
 import { AtrixShop } from "../../../assets/index";
@@ -6,6 +6,22 @@ import { Button } from "antd";
 
 const HeaderComponent = () => {
   const token = localStorage.getItem("token");
+
+  const [selected, setSelected] = useState("product");
+  const path = window.location.pathname;
+
+  useEffect(() => {
+    if (path === "/productpage") {
+      setSelected("product");
+    } else if (path === "/aboutus") {
+      setSelected("aboutus");
+    } else if (path === "/adminproduct") {
+      setSelected("admin");
+    } else {
+      setSelected("");
+    }
+  }, [path]);
+
   return (
     <>
       <div className="header">
@@ -14,20 +30,37 @@ const HeaderComponent = () => {
             <img src={AtrixShop} alt="Atrix Shop" className="logo" />
           </Link>
           <div className="link-wrapper">
-            <Link to={"/productpage"} className="link">
-              <p>Product</p>
+            <Link to={"/productpage"}>
+              <p
+                className={`link ${
+                  selected === "product" ? "selectedHeader" : ""
+                }`}
+              >
+                Product
+              </p>
             </Link>
-            <Link to={"/aboutus"} className="link">
-              <p>About Us</p>
+            <Link to={"/aboutus"}>
+              <p
+                className={`link ${
+                  selected === "aboutus" ? "selectedHeader" : ""
+                }`}
+              >
+                About Us
+              </p>
             </Link>
-            <Link to={token ? "/adminproduct" : "/adminlogin"} className="link">
-              <p>Admin</p>
+            <Link to={token ? "/adminproduct" : "/adminlogin"}>
+              <p
+                className={`link ${
+                  selected === "admin" ? "selectedHeader" : ""
+                }`}
+              >
+                Admin
+              </p>
             </Link>
 
             {token && (
-              <Link to={"/adminlogin"}>
+              <Link to="/adminlogin">
                 <Button
-                  className="logout"
                   type="primary"
                   onClick={() => {
                     localStorage.removeItem("token");

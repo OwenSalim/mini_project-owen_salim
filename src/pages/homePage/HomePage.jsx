@@ -159,7 +159,7 @@ const HomePage = () => {
                   title={item.title}
                   description={item.description}
                 />
-                <Rate allowHalf defaultValue={4.5} />
+                <Rate allowHalf disabled defaultValue={4} />
               </List.Item>
             )}
           />
@@ -167,9 +167,10 @@ const HomePage = () => {
       </div>
       <Gap height={40} />
       <Alert
+        className="alert"
         banner
         message={
-          <Marquee pauseOnHover gradient={false}>
+          <Marquee pauseOnHover gradient={true}>
             Atrix Shop buka setiap hari pada pukul 07:00 WIB s.d. 17:00 WIB dari
             hari Senin s.d. Jumat, kami hanya menjual produk original !!.
             Hindari penipuan yang mengatasnamakan Atrix Shop. Terima Kasih.

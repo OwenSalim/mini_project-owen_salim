@@ -9,6 +9,7 @@ export const GET_PRODUCT = gql`
       productName
       productPrice
       productQuantity
+      productStar
       timeStamp
       uuid
     }
@@ -24,6 +25,7 @@ export const GET_PRODUCT_BY_PK = gql`
       productName
       productPrice
       productQuantity
+      productStar
       timeStamp
       uuid
     }

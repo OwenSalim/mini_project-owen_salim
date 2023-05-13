@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./productPage.css";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT } from "../adminProduct/query/product-query";
-import { Card, List, Input, Button } from "antd";
+import { Card, List, Input, Button, Select } from "antd";
 import LoadingComponent from "../../components/loadingComponent/LoadingComponent";
 import { RUPIAH } from "../../components/currency";
 import { Link } from "react-router-dom";
@@ -38,19 +38,20 @@ const ProductPage = () => {
     );
   };
 
-  const handleSearch2 = (e) => {
-    const value = e.target.value;
+  const selectCategory = (category) => {
+    const value = category.value;
 
     setData(
       productData?.product.filter((item) => {
         const isMatchProduct = value
-          ? item.productCategory.toLowerCase().includes(value.toLowerCase())
+          ? item.productCategory.includes(value)
           : true;
 
         return isMatchProduct;
       })
     );
   };
+
   return (
     <div className="productPage-layout">
       <div>
@@ -60,16 +61,54 @@ const ProductPage = () => {
             placeholder="Search By Name"
             prefix={<SearchOutlined />}
             onChange={handleSearch}
+            style={{
+              width: "50%",
+            }}
           />
           <Gap height={20} />
-          <Input
+
+          <Select
             placeholder="Search By Category"
-            prefix={<SearchOutlined />}
-            onChange={handleSearch2}
+            labelInValue
+            onChange={selectCategory}
+            style={{
+              width: "50%",
+            }}
+            options={[
+              {
+                value: "",
+                label: "",
+              },
+              {
+                value: "Processor",
+                label: "Processor",
+              },
+              {
+                value: "Motherboard",
+                label: "Motherboard",
+              },
+              {
+                value: "RAM",
+                label: "RAM",
+              },
+              {
+                value: "PSU",
+                label: "PSU",
+              },
+              {
+                value: "VGA",
+                label: "VGA",
+              },
+              {
+                value: "SSD",
+                label: "SSD",
+              },
+            ]}
           />
         </div>
 
         <Gap height={25} />
+
         {isProductLoading && <LoadingComponent />}
         <List
           grid={{
@@ -107,14 +146,14 @@ const ProductPage = () => {
                 <Gap height={10} />
                 <div className="productPrice">
                   <div>
-                    <Rate allowHalf defaultValue={4.5} />
+                    <Rate allowHalf disabled value={item.productStar} />
                     <p>Stock : {item.productQuantity}</p>
                     <p>Harga : {RUPIAH(item.productPrice)}</p>
                   </div>
 
                   <Link className="buy-button" to={`/productpage/${item.uuid}`}>
                     <Button>
-                      <strong>Buy Now</strong>
+                      <strong>More</strong>
                     </Button>
                   </Link>
                 </div>
